@@ -1,0 +1,17 @@
+[build]
+builder = "nixpacks"
+buildCommand = "composer install --no-interaction --prefer-dist --optimize-autoloader"
+
+[deploy]
+startCommand = "php artisan migrate:fresh --seed && php artisan storage:link && php artisan serve --host=0.0.0.0 --port=$PORT"
+healthcheckPath = "/up"
+healthcheckTimeout = 300
+restartPolicyType = "on_failure"
+
+[variables]
+APP_NAME = "YamahaApp"
+APP_ENV = "production"
+APP_DEBUG = "false"
+APP_URL = "https://yamaha-app-production.up.railway.app"
+ASSET_URL = "https://yamaha-app-production.up.railway.app"
+FILESYSTEM_DISK = "public" 
